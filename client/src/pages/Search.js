@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import BookList from "../components/BookList";
 import API from "../util/API";
 
@@ -9,25 +9,40 @@ const styles = {
 }
 
 function Search() {
+    const inputRef = useRef();
+
     const [title, setTitle] = useState("");
+    const [results, setResults] = useState([]);
 
     function handleInputChange(event) {
         const value = event.target.value;
-        setTitle({ title: value });
+        setTitle(value);
     };
 
     function handleFormSubmit(event) {
         event.preventDefault();
-        if (title) {
-            API.getBooks(title)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err));
-        }
+
+        API.getBooks(inputRef.current.value)
+            .then(res => {
+                console.log(res.data.items);
+                setResults(res.data.items)
+            })
+            .catch(err => console.log(err));
     }
 
-    function renderBooks(){
-        
-    }
+    // function renderBooks() {
+    //     results.map(item => {
+    //         return (
+    //             <BookList
+    //                 key={item.title}
+    //                 author={item.author}
+    //                 title={item.title}
+    //                 link={item.link}
+    //                 img={item.img}
+    //             />
+    //         )
+    //     })
+    // }
 
     return (
         <section>
@@ -39,7 +54,7 @@ function Search() {
                         <form>
                             <div className="input-field">
                                 <i className="material-icons prefix">search</i>
-                                <input id="searchBar" type="text" required onChange={handleInputChange} />
+                                <input id="searchBar" type="text" required onChange={handleInputChange} ref={inputRef} />
                                 <label htmlFor="searchBar">Search</label>
                             </div>
                             <button className="btn waves-effect waves-red pink" type="submit" name="action"
@@ -57,7 +72,19 @@ function Search() {
                 <div className="col s8" style={styles.text}>
                     <h5 style={{ fontWeight: "bold" }}>Search Results</h5>
                     <ul>
-                        <BookList />
+                        {results.map(item => {
+                            console.log(item);
+                            return (
+                                <BookList
+                                    key={item.volumeInfo.id}
+                                    author={item.volumeInfo.authors}
+                                    title={item.volumeInfo.title}
+                                    description={item.volumeInfo.description}
+                                    link={item.volumeInfo.infoLink}
+                                    img={item.volumeInfo.imageLinks.thumbnail}
+                                />
+                            )
+                        })}
                     </ul>
                 </div>
                 <div className="col s2"></div>
