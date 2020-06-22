@@ -26,8 +26,8 @@ class Navbar extends Component {
             <div>
                 <nav style={styles.navbar}>
                     <div className="nav-wrapper">
-                        <a href="/" className="brand-logo" style={styles.logo}><i className="fas fa-book"></i> Google Books</a>
-                        <span data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></span>
+                        <a href="/" className="brand-logo" style={styles.logo}>Google Books</a>
+                        <a data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul id="nav-mobile" className="right hide-on-med-and-down" style={styles.link}>
                             <li><a href="/">Search Books</a></li>
                             <li><a href="/saved">Saved Books</a></li>
