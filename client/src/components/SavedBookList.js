@@ -34,18 +34,18 @@ function BookList(props) {
                     <p style={styles.title}>{props.title}</p>
                     <p>{props.author}</p>
                 </div>
-                <div className="col s4">
-                    <a href={props.link} style={styles.button} className="btn waves-effect waves-red pink">View</a>
-                    <button onClick={() => handleDelete(props.id)} style={styles.button} className="btn waves-effect waves-red pink">Delete</button>
+            </div>
+            <div className="row">
+                <div className="col s12 m4 l3">
+                    <img src={props.img} alt="placeholder" width="160" />
+                </div>
+                <div className="col s12 m8 l9">
+                    <p style={{ overflow: "auto", padding:"0 20px" }}>{props.description}</p>
                 </div>
             </div>
             <div className="row">
-                <div className="col s4 l3">
-                    <img src={props.img} alt="placeholder" width="160" />
-                </div>
-                <div className="col s8 l9">
-                    <p style={{ paddingLeft: "20px" }}>{props.description}</p>
-                </div>
+                <a href={props.link} style={styles.button} className="btn waves-effect waves-red pink">View</a>
+                <button onClick={() => handleDelete(props.id)} style={styles.button} className="btn waves-effect waves-red pink">Delete</button>
             </div>
         </li>
     )

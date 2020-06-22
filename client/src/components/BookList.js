@@ -33,28 +33,28 @@ function BookList(props) {
             .catch(err => console.log(err));
     }
 
-return (
-    <li style={styles.liStyle} key={props.id}>
-        <div className="row">
-            <div className="col s8">
-                <p style={styles.title}>{props.title}</p>
-                <p>{props.author}</p>
+    return (
+        <li style={styles.liStyle} key={props.id}>
+            <div className="row">
+                <div className="col s8">
+                    <p style={styles.title}>{props.title}</p>
+                    <p>{props.author}</p>
+                </div>
             </div>
-            <div className="col s4">
+            <div className="row">
+                <div className="col s12 m4 l3">
+                    <img src={props.img} alt="placeholder" width="160" />
+                </div>
+                <div className="col s12 m8 l9">
+                    <p style={{ overflow: "auto", padding: "0 20px" }}>{props.description}</p>
+                </div>
+            </div>
+            <div className="row">
                 <a href={props.link} style={styles.button} className="btn waves-effect waves-red pink">View</a>
                 <button onClick={handleSaveBook} style={styles.button} className="btn waves-effect waves-red pink">Save</button>
             </div>
-        </div>
-        <div className="row">
-            <div className="col s4 l3">
-                <img src={props.img} alt="placeholder" width="160" />
-            </div>
-            <div className="col s8 l9">
-                <p style={{paddingLeft: "20px"}}>{props.description}</p>
-            </div>
-        </div>
-    </li>
-)
+        </li>
+    )
 }
 
 export default BookList;

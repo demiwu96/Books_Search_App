@@ -58,14 +58,28 @@ function Search() {
                     <h5 style={{ fontWeight: "bold" }}>Search Results</h5>
                     <ul>
                         {results.map(item => {
+                            let imgLink;
+                            let authorList;
+                            if (!item.volumeInfo.imageLinks) {
+                                imgLink = "https://place-hold.it/200"
+                            } else {
+                                imgLink = item.volumeInfo.imageLinks.thumbnail
+                            }
+                            if (item.volumeInfo.authors) {
+                                if (item.volumeInfo.authors.length > 1) {
+                                    authorList = item.volumeInfo.authors.join();
+                                } else {
+                                    authorList = item.volumeInfo.authors;
+                                }
+                            }
                             return (
                                 <BookList
                                     key={item.volumeInfo.id}
-                                    author={item.volumeInfo.authors}
+                                    author={authorList}
                                     title={item.volumeInfo.title}
                                     description={item.volumeInfo.description}
                                     link={item.volumeInfo.infoLink}
-                                    img={item.volumeInfo.imageLinks.thumbnail}
+                                    img={imgLink}
                                 />
                             )
                         })}
