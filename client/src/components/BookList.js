@@ -1,4 +1,5 @@
 import React from 'react';
+import API from '../util/API';
 
 const styles = {
     button: {
@@ -18,28 +19,42 @@ const styles = {
 }
 
 function BookList(props) {
-    return (
-        <li style={styles.liStyle}>
-            <div className="row">
-                <div className="col s8">
-                    <p style={styles.title}>{props.title}</p>
-                    <p>{props.author}</p>
-                </div>
-                <div className="col s4">
-                    <a href={props.link} style={styles.button} className="btn waves-effect waves-red pink">View</a>
-                    <a style={styles.button} className="btn waves-effect waves-red pink">Save</a>
-                </div>
+    function handleSaveBook() {
+        console.log("sending data");
+        API.saveBook(
+            {
+                title: props.title,
+                author: props.author,
+                description: props.description,
+                link: props.link,
+                img: props.img,
+            })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
+
+return (
+    <li style={styles.liStyle} key={props.id}>
+        <div className="row">
+            <div className="col s8">
+                <p style={styles.title}>{props.title}</p>
+                <p>{props.author}</p>
             </div>
-            <div className="row">
-                <div className="col s4 l3">
-                    <img src={props.img} alt="placeholder" width="160" />
-                </div>
-                <div className="col s8 l9">
-                    <p>{props.description}</p>
-                </div>
+            <div className="col s4">
+                <a href={props.link} style={styles.button} className="btn waves-effect waves-red pink">View</a>
+                <button onClick={handleSaveBook} style={styles.button} className="btn waves-effect waves-red pink">Save</button>
             </div>
-        </li>
-    )
+        </div>
+        <div className="row">
+            <div className="col s4 l3">
+                <img src={props.img} alt="placeholder" width="160" />
+            </div>
+            <div className="col s8 l9">
+                <p style={{paddingLeft: "20px"}}>{props.description}</p>
+            </div>
+        </div>
+    </li>
+)
 }
 
 export default BookList;

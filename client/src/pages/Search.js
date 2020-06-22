@@ -22,27 +22,12 @@ function Search() {
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        API.getBooks(inputRef.current.value)
+        API.searchBooks(inputRef.current.value)
             .then(res => {
-                console.log(res.data.items);
                 setResults(res.data.items)
             })
             .catch(err => console.log(err));
     }
-
-    // function renderBooks() {
-    //     results.map(item => {
-    //         return (
-    //             <BookList
-    //                 key={item.title}
-    //                 author={item.author}
-    //                 title={item.title}
-    //                 link={item.link}
-    //                 img={item.img}
-    //             />
-    //         )
-    //     })
-    // }
 
     return (
         <section>
@@ -73,7 +58,6 @@ function Search() {
                     <h5 style={{ fontWeight: "bold" }}>Search Results</h5>
                     <ul>
                         {results.map(item => {
-                            console.log(item);
                             return (
                                 <BookList
                                     key={item.volumeInfo.id}
