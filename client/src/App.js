@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/">
             <Search />
           </Route>
-          <Route exact path="/saved">
+          <Route path="/saved">
             <Saved />
           </Route>
           <Route path="*">
