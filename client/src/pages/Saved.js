@@ -12,8 +12,8 @@ function Saved() {
     const [savedBooks, setSavedBooks] = useState([]);
 
     useEffect(() => {
-        loadBooks()
-    }, [savedBooks])
+        loadBooks();
+    }, [])
 
     function loadBooks() {
         API.getBookList()
