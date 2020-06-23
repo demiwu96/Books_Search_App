@@ -1,5 +1,4 @@
 const express = require("express");
-
 const mongoose = require("mongoose");
 const routes = require("./routes/apiRoutes");
 const app = express();
@@ -22,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password123@ds149844.mlab.com:49844/heroku_2n4052fs", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/googleBook", { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {
