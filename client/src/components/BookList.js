@@ -19,8 +19,8 @@ const styles = {
 }
 
 function BookList(props) {
-    function handleSaveBook() {
-        console.log("sending data");
+    function handleSaveBook(event) {
+        const btn = event.target;
         API.saveBook(
             {
                 title: props.title,
@@ -29,7 +29,10 @@ function BookList(props) {
                 link: props.link,
                 img: props.img,
             })
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res);
+                btn.disabled = 'true';
+            })
             .catch(err => console.log(err));
     }
 
