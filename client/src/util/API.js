@@ -7,13 +7,13 @@ export default {
        return (axios.get("https://www.googleapis.com/books/v1/volumes?q=intitle:" + query + "&key=" + apiKey));
     },
     getBookList: function(){
-        return(axios.get("http://localhost:3001/api/savedbooks"))
+        return(axios.get("/api/savedbooks"))
     },
     saveBook: function(data){
-        return axios.post("http://localhost:3001/api/books", data)
+        return axios.post("/api/books", data)
     },
     deleteBook: function(id){
         console.log(id)
-        return(axios.delete("http://localhost:3001/api/books/" + id))
+        return(axios.delete("/api/books/" + id))
     }
 };
