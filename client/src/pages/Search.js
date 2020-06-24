@@ -27,6 +27,8 @@ function Search() {
                 setResults(res.data.items)
             })
             .catch(err => console.log(err));
+
+        setTitle("");
     }
 
     return (
