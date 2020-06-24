@@ -10,6 +10,13 @@ const path = require('path');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+
+// Add routes, both API and view
+app.use("/api",routes);
+
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/googleBook", { useNewUrlParser: true });
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -17,11 +24,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   })
 }
-// Add routes, both API and view
-app.use("/api",routes);
-
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/googleBook", { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {
