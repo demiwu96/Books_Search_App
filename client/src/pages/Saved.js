@@ -18,7 +18,7 @@ function Saved() {
     function loadBooks() {
         API.getBookList()
             .then(res => {
-                console.log(res.data);
+                console.log(res);
                 setSavedBooks(res.data);
             })
             .catch(err => console.log(err));
