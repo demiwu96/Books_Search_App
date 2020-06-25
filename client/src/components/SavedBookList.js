@@ -26,7 +26,6 @@ function BookList(props) {
             .catch(err => console.log(err));
     }
 
-
     return (
         <li key={props.id} style={styles.liStyle}>
             <div className="row">

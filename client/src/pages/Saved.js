@@ -13,7 +13,7 @@ function Saved() {
 
     useEffect(() => {
         loadBooks();
-    }, [])
+    }, [savedBooks])
 
     function loadBooks() {
         API.getBookList()
